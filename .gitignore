@@ -1,0 +1,7 @@
+# Artefactos de verificación (los regenera scripts/verify.py)
+data/
+
+__pycache__/
+*.pyc
+
+.zcode/

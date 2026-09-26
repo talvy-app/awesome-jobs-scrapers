@@ -1,0 +1,41 @@
+name: Sugerir recurso
+description: Propón un recurso mantenido para el listado
+title: "[Sugerencia] "
+labels: ["sugerencia"]
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: URL del repositorio
+      description: Solo GitHub (o npm/PyPI si el repo principal está ahí enlazado).
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: textarea
+    id: que-hace
+    attributes:
+      label: ¿Qué hace?
+      description: Qué cubre (portales, ATS, países), con qué estrategia de adquisición (API pública, endpoint ATS, HTML, browser automation) y stack.
+    validations:
+      required: true
+  - type: dropdown
+    id: seccion
+    attributes:
+      label: Sección sugerida
+      options:
+        - 1. Agregadores multi-job-board
+        - 2. Conectores ATS y career pages
+        - 3. APIs y feeds públicos
+        - 4. Plataformas self-hosted end-to-end
+        - 5. Infra anti-bot y scraping general
+        - 6. Datasets y listas vigiladas
+        - 7. Tutoriales y guías
+    validations:
+      required: true
+  - type: textarea
+    id: mantenimiento
+    attributes:
+      label: ¿Por qué cumple la barra de mantenimiento?
+      description: Fecha aproximada del último commit, actividad de issues, si hay releases. La barra exige commits de los últimos 12 meses y repo no archivado.
+    validations:
+      required: true

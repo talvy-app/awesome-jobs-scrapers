@@ -1,0 +1,54 @@
+name: Verificación semestral
+
+on:
+  schedule:
+    # 1 de enero y 1 de julio a las 06:00 UTC
+    - cron: "0 6 1 1,7 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Verificar barra de mantenimiento contra la API de GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/verify.py check
+
+      - name: Mostrar informe
+        if: always()
+        run: cat data/verify-report.md || true
+
+      - name: Abrir PR de archivo si hay candidatos
+        if: hashFiles('data/to-archive.json') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CANDIDATOS=$(python -c "import json;print(len(json.load(open('data/to-archive.json'))))")
+          if [ "$CANDIDATOS" -eq 0 ]; then
+            echo "Sin candidatos a archivo; no se abre PR."
+            exit 0
+          fi
+          FECHA=$(date +%Y-%m)
+          RAMA="archivo/$FECHA"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$RAMA"
+          python scripts/archive_mover.py
+          git add README.md
+          git commit -m "archivo($FECHA): $CANDIDATOS recurso(s) dejan de cumplir la barra"
+          git push origin "$RAMA"
+          gh pr create \
+            --title "Archivo semestral ($FECHA): $CANDIDATOS candidato(s)" \
+            --body-file data/verify-report.md \
+            --base main --head "$RAMA"

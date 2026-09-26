@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Criterios editoriales
+    url: https://github.com/talvy-app/awesome-jobs-webscraping#criterios-editoriales
+    about: Lee la barra de mantenimiento y la política de archivo antes de abrir un issue.
