@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verificación de recursos para awesome-jobs-webscraping.
+"""Verificación de recursos para awesome-jobs-scrapers.
 
 Modos:
   lookup <slugs.json> [--out data/verified.json]
@@ -68,7 +68,7 @@ class GitHub:
         for attempt in range(4):
             req = urllib.request.Request(url)
             req.add_header("Accept", "application/vnd.github+json")
-            req.add_header("User-Agent", "awesome-jobs-webscraping-verify")
+            req.add_header("User-Agent", "awesome-jobs-scrapers-verify")
             if self.token:
                 req.add_header("Authorization", f"Bearer {self.token}")
             try:

@@ -1,11 +1,11 @@
-# awesome-jobs-webscraping
+# awesome-jobs-scrapers
 
 > Listado curado de recursos **existentes y mantenidos** para scrapear y agregar ofertas de trabajo, con recursos principalmente de GitHub.
 
 ![última verificación](https://img.shields.io/badge/%C3%BAltima_verificaci%C3%B3n-2026-09-26-2ea44f)
 ![entradas activas](https://img.shields.io/badge/entradas_activas-124-0969da)
 ![licencia](https://img.shields.io/badge/licencia-MIT-green)
-[![CI verificación](https://github.com/talvy-app/awesome-jobs-webscraping/actions/workflows/verify.yml/badge.svg)](https://github.com/talvy-app/awesome-jobs-webscraping/actions/workflows/verify.yml)
+[![CI verificación](https://github.com/talvy-app/awesome-jobs-scrapers/actions/workflows/verify.yml/badge.svg)](https://github.com/talvy-app/awesome-jobs-scrapers/actions/workflows/verify.yml)
 
 ## Criterios editoriales
 
